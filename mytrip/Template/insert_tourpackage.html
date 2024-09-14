@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+{% extends 'companyheader.html' %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Tour Package</title>
+</head>
+<body>
+{% block content %}
+<center><h2> TOUR PACKAGE</h2></center>
+<form id="f1" method="post" enctype="multipart/form-data">
+     <table class="table table-striped">
+      {% csrf_token %}
+      {{ form1.as_table }}
+
+   </table>
+    <input type="submit" value="submit">
+{% if messages %}
+    <ul class="messages">
+
+        {% for message in messages %}
+        <li {% if message.tags %} class ="{{ message.tags }}" {% endif %}>{{ message }}</li>
+        {% endfor %}
+    </ul>
+{% endif %}
+
+</form>
+
+<table border="1">
+    <tr>
+        <th> Package_Name</th>
+        <th>Duration</th>
+        <th>Stay_category</th>
+        <th>Stay_Name</th>
+        <th>No_of_Persons</th>
+        <th>Price</th>
+        <th>Package_Contents</th>
+        <th>Insurance_Company</th>
+        <th>Image</th>
+        <th>Image1</th>
+        <th>Destination</th>
+        <th>Pilgrimcenter</th>
+        <th colspan="2" style="text-align:center" >Actions</th>
+
+    </tr>
+    {% for obj in package %}
+     <tr>
+
+        <td>{{ obj.Package_Name }}</td>
+         <td>{{ obj.Duration }}</td>
+         <td>{{ obj.Stay_category }}</td>
+         <td>{{ obj.Stay_Name }}</td>
+        <td>{{ obj.No_of_Packages }}</td>
+        <td>{{ obj.Price }}</td>
+        <td>{{ obj.Package_Contents }}</td>
+        <td>{{ obj.Insurance_Company }}</td>
+
+        <td>
+            {% if obj.Image %}
+            <img src="{{ obj.Image.url }}" width="100" height="100">
+            {% endif %}
+        </td>
+         <td>
+            {% if obj.Image %}
+            <img src="{{ obj.Image1.url }}" width="100" height="100">
+            {% endif %}
+        </td>
+         <td> <ul>
+             {% for dest in obj.Destination.all %}
+             <li> {{  dest.Destination  }}</li>
+             {% endfor %}
+         </ul>
+         </td>
+         <td> <ul>
+             {% for dest in obj.pilgrimcenter.all %}
+             <li> {{  dest.Pilg_Name  }}</li>
+             {% endfor %}
+         </ul>
+         </td>
+         <td>
+             <a href="{% url 'updatetourpackage' obj.id %}">edit</a>
+             <a href="{% url 'deltourpackage' obj.id %}">delete</a>
+         </td>
+
+    </tr>
+    {% endfor %}
+</table>
+{% endblock content %}
+</body>
+</html>
+

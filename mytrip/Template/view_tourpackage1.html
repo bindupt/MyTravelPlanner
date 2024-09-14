@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+{% extends 'customerheader1.html' %}
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>Tour Package</title>
+
+</head>
+<body>
+{% block content %}
+<!-- CONTENT START -->
+    <section>
+
+        <div class="container mt-5 mb-5">
+            <div class="row no-gutters">
+                {% for obj in package %}
+                <div class="col-lg-8">
+                    <div class="feature-img" >
+                         {% if obj.Image1 %}
+            <img src="{{ obj.Image1.url }}" width="550" height="400">
+            {% endif %}
+
+                    </div>
+                </div>
+                <div class="col-lg-4">
+
+                    <div class="feature-img-thumb" >
+                             {% if obj.Image1 %}
+            <img src="{{ obj.Image1.url }}" width="250" height="200">
+            {% endif %}
+
+                    </div>
+                    <div class="feature-img-thumb">
+                        {% if obj.Image %}
+            <img src="{{ obj.Image.url }}" width="250" height="200">
+            {% endif %}
+
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="activity-description">
+                 {% for dest in obj.pilgrimcenter.all %}
+                {{  dest.Pilg_Name  }}</br>
+                {{ dest.Pilg_Address  }}</br>
+                <p>{{  dest.Pilg_Description  }}</strong>,
+                    </p>
+                {{  dest.Pilg_link  }}</br>
+                <p>Coletta Sportfishing offers daily private charters on both its boats. Coletta is family-friendly
+                    and caters to all experience levels; the captain and crew will teach young and first-time anglers
+                    the basics of sportfishing. Outings range from half-day trips (5 1/2 hours) to full-day (12-hour)
+                    charters. </p>
+
+
+
+
+
+
+
+    {% endfor %}
+            </div>
+
+            <div class="row mt-4">
+                <div class="col-lg-8">
+                    <h3>{{ obj.Package_Name }} . {{ obj.Duration }}</h3>
+                    <br>
+                    <form id="contact-form" method="post" action="contact.php">
+                        <div class="messages"></div>
+                        <div class="controls">
+                            <div class="row">
+                                <div class="col-lg-4">
+                                  <h5> No of Packages: {{ obj.No_of_Packages}}</h5>  </br>
+                                  <h5> Price:₹{{ obj.Price }} </h5></br>
+
+                                    <div class="form-group">
+                                        <h5>{{ obj.Package_Contents }}</h5></br>
+                                    <h5>{{ obj.Insurance_Company }}</h5>
+
+
+                                        <div class="help-block with-errors"></div>
+
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+
+      {% for dest in obj.Destination.all %}
+                                    <div class="form-group">
+
+
+                           <h5><li> {{  dest.Destination  }}</li>
+                                       <li> <li>{{  dest.Category  }}</li>
+                                        <li> {{  dest.Destination  }}</li>
+
+
+                               <li>  {{  dest.Location  }},{{  dest.District  }}, {{  dest.state  }}></li></h5>
+                                         {% endfor %}
+                                        <div class="help-block with-errors"  {{  dest.image }}></div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-12">
+                                    <div class="form-group">
+                                        {% for obj in staydetails %}
+
+                                        <h5><li> {{ obj.Stay_category }} </li> </h5> <br>
+                                        <h5> <li>{{ obj.Name }} </li></h5>
+
+                                        {% endfor %}
+                                        <div class="help-block with-errors"></div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-12">
+                                    <div class="form-group">
+                                        <ul>
+   <h5> <b>Pilgrim Details</b></h5>
+    {% for dest in obj.pilgrimcenter.all %}
+  <h6>  <li>{{  dest.Pilg_Name  }}</li>
+     {{ dest.Pilg_Address  }}
+    {{  dest.Pilg_Description  }}
+
+    {{  dest.Pilg_link  }}</h6>
+
+    {% endfor %}
+         </ul>
+                                   When we say tour package, it means a pre-arrangement, prepaid trip that combines two or more travel components like airfare, airport transfer, accommodation, and other services. Practically, to define the tour package concept is complex one rather understand.  Holloway defines a tour package as “a total tourism product consisting of transportation from the market area to the destination, accommodation at the destination and recreational activities promoted by the tourists.”
+
+According to Gregorg “a tour package is advertised journey including specific features, arranged and promoted with tour literature by a tour operator and paid for in full by the tourists  before starting the tour.”
+                                        <div class="help-block with-errors"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <br />
+                            <div class="row">
+                                <div class="col-md-12 btn-send">
+
+                                    <p> <a href="{% url 'reservation' obj.id %}"><h4>Book Now!!..</h4></a></p>
+
+                                </div>
+
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+                <div class="col-lg-4 spacing-md">
+                    <aside class="aside-right">
+                        <div class="inner-aside">
+                             {% for dest in obj.pilgrimcenter.all %}
+                            <figure class="promo-banner">
+                                 {% if obj.Image %}
+            <img src=" {{  dest.Pilg_image.url }}" width="250" height="200">
+            {% endif %}
+
+                            </figure>
+                                {% endfor %}
+                        </div>
+                    </aside>
+                </div>
+            </div>
+        </div>
+        <div class="thumb-carousel">
+            <div class="owl-carousel owl-theme">
+                <div class="item">
+                    <a href="#">
+                        <figure class="tour-hover">
+                            <img src="https://via.placeholder.com//992x660" alt="" />
+                            <figcaption>
+                                <div class="square">
+                                    <div></div>
+                                </div>
+                                <h3>Scuba <span> Diving</span></h3>
+                                <p>Coastline First Discovered</p>
+                            </figcaption>
+                        </figure>
+                    </a>
+                </div>
+                <div class="item">
+                    <a href="#">
+                        <figure class="tour-hover">
+                            <img src="https://via.placeholder.com//992x660" alt="" />
+                            <figcaption>
+                                <div class="square">
+                                    <div></div>
+                                </div>
+                                <h3>Paragliding  <span> Fly</span></h3>
+                                <p>Highest Mountain Ranges</p>
+                            </figcaption>
+                        </figure>
+                    </a>
+                </div>
+                <div class="item">
+                    <a href="#">
+                        <figure class="tour-hover">
+                            <img src="https://via.placeholder.com//992x660" alt="" />
+                            <figcaption>
+                                <div class="square">
+                                    <div></div>
+                                </div>
+                                <h3>Mountain  <span> Bike</span></h3>
+                                <p>Komodo National Park</p>
+                            </figcaption>
+                        </figure>
+                    </a>
+                </div>
+                <div class="item">
+                    <a href="#">
+                        <figure class="tour-hover">
+                            <img src="https://via.placeholder.com//992x660" alt="" />
+                            <figcaption>
+                                <div class="square">
+                                    <div></div>
+                                </div>
+                                <h3>Yacth <span> Excursion</span></h3>
+                                <p>Swim with Manta Rays</p>
+                            </figcaption>
+                        </figure>
+                    </a>
+                </div>
+                <div class="item">
+                    <a href="#">
+                        <figure class="tour-hover">
+                            <img src="https://via.placeholder.com//992x660" alt="" />
+                            <figcaption>
+                                <div class="square">
+                                    <div></div>
+                                </div>
+                                <h3>Horse <span> Riding</span></h3>
+                                <p>Guided Horseback Ride</p>
+                            </figcaption>
+                        </figure>
+                    </a>
+                </div>
+            </div>
+            <div class="owl-theme">
+                <div class="owl-controls">
+                    <div class="custom-nav owl-nav"></div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+    <!-- CONTENT END -->
+
+<body>
+
+  {% for obj in package %}
+  <table>
+       <tr>
+            <td>
+            {% if obj.Image %}
+            <img src="{{ obj.Image.url }}" width="300" height="100">
+            {% endif %}
+  </td>
+       </tr>
+
+
+     <tr>
+  <td>
+            {% if obj.Image1 %}
+            <img src="{{ obj.Image1.url }}" width="100" height="100">
+            {% endif %}
+  </td></tr>
+
+      <tr>
+        <th> Package_Name</th>
+           <td>{{ obj.Package_Name }}</td>
+       </tr>
+      <tr>
+        <th>Duration</th>
+        <td>{{ obj.Duration }}</td>
+      </tr>
+      <tr>
+          <th>No_of_Persons</th>
+          <td> {{ obj.No_of_Packages}}</td>
+      </tr>
+        <tr>
+         <th>Price per person:</th>
+          <td> {{ obj.Price }}</td>
+      </tr>
+       <tr>
+         <th>Package_Contents</th>
+          <td>{{ obj.Package_Contents }}</td>
+      </tr>
+        <tr>
+
+        <th>Insurance_Company</th>
+            <td> {{ obj.Insurance_Company }}</td>
+        </tr>
+
+
+ <tr>
+  <td> <ul>
+      <b>Destination Details</b>
+      {% for dest in obj.Destination.all %}
+
+        <li> {{  dest.Destination  }}</li>
+         {{  dest.Category  }}
+        {{  dest.Location  }}
+         {{  dest.District  }}
+        {{  dest.state  }}
+        {{  dest.image }}
+      {% endfor %}
+         </ul>
+  </td>
+
+ </tr>
+      <tr>
+<td> <ul>
+    <b>Pilgrim Details</b>
+    {% for dest in obj.pilgrimcenter.all %}
+    <li> {{  dest.Pilg_Name  }}</li>
+     {{ dest.Pilg_Address  }}
+    {{  dest.Pilg_Description  }}
+    {{  dest.Pilg_image }}
+    {{  dest.Pilg_link  }}
+
+    {% endfor %}
+         </ul>
+         </td>
+      </tr>
+  <tr>
+
+<td> <ul>
+    {% for obj in staydetails %}
+             <li> {{ obj.Stay_category }} </li>
+    <li>{{ obj.Name }} </li>
+   {{ obj.Location }}
+    {{ obj.District }}
+   {{ obj.state }}
+    {{ obj.Tarrif_range }}
+   {{ obj.mobno }}
+    {{ obj.email }}
+</ul>
+</td>
+     <td><img src="{{ obj.images.url }}" width="100" height="100"></td>
+
+        <td>{{ obj.link }}</td>
+             {% endfor %}
+
+
+</tr>
+      <tr>
+          <td>
+             <a href="{% url 'reservation' obj.id %}">Book Now!!..</a>
+
+          </td>
+      </tr>
+
+  </table>
+{% endfor %}
+{% endblock content %}
+</body>
+</html>
+
+
+
+
+
+

@@ -1,0 +1,38 @@
+<!-- search_Events.html -->
+<!DOCTYPE html>
+{% extends 'customerheader1.html' %}
+<html>
+<head>
+    <title>Search Events</title>
+</head>
+<body>
+    {% block content %}
+    <table class="table table-striped">
+        <tr>
+            <th>Event</th>
+            <th>Description</th>
+            <th>Importance</th>
+            <th>Date</th>
+            <th>District</th>
+            <th>state</th>
+            <th>Country</th>
+            
+    
+        </tr>
+        {% for evnt in events %}
+         <tr>
+             <td>{{ evnt.Event }}</td>
+             <td>{{ evnt.Description }}</td>
+             <td>{{ evnt.Importance }}</td>
+             <td>{{ evnt.Date }}</td>
+             <td> {{ evnt.District }}</td>
+             <td> {{ evnt.state }}</td>
+             <td> {{ evnt.Country }}</td>  
+            
+         </tr>
+        {% endfor %}
+    </table>
+    {% endblock content %}
+
+ </body>
+</html>

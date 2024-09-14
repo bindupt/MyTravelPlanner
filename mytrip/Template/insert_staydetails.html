@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+{% extends 'companyheader.html' %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Stay Details</title>
+</head>
+<body>
+{% block content %}
+<form id="f1" method="post" enctype="multipart/form-data">
+    <table class="table table-striped">
+        <H3><b>STAY DETAILS</b></H3>
+      
+      {% csrf_token %}
+      {{ form1.as_table }}
+
+   </table>
+    <input type="submit" value="submit">
+{% if messages %}
+    <ul class="messages">
+
+        {% for message in messages %}
+        <li {% if message.tags %} class ="{{ message.tags }}" {% endif %}>{{ message }}</li>
+        {% endfor %}
+    </ul>
+{% endif %}
+
+</form>
+
+<table border="1">
+    <tr>
+        <th>Stay details</th>
+        <th>Name</th>
+        <th>Address</th>
+        <th>Location</th>
+        <th>District</th>
+        <th>state</th>
+        <th>Tarrif_range</th>
+        <th>Lphone</th>
+        <th>mobno</th>
+        <th>fax</th>
+        <th>email</th>
+        <th>images</th>
+        <th>link</th>
+        <th colspan="2" style="text-align:center" >Actions</th>
+
+
+    </tr>
+    {% for obj in staydetails %}
+     <tr>
+
+        <td>{{ obj.Stay_category }}</td>
+         <td>{{ obj.Name }}</td>
+         <td>{{ obj.Address }}</td>
+         <td>{{ obj.Location }}</td>
+        <td>{{ obj.District }}</td>
+        <td>{{ obj.state }}</td>
+        <td>{{ obj.Tarrif_range }}</td>
+        <td>{{ obj.Lphone }}</td>
+        <td>{{ obj.mobno }}</td>
+        <td>{{ obj.fax }}</td>
+        <td>{{ obj.email }}</td>
+
+         <td><img src="{{ obj.images.url }}" width="100" height="100"></td>
+
+        <td>{{ obj.link }}</td>
+         <td>
+             <a href="{% url 'updatestaydetails' obj.id %}">edit</a>
+             <a href="{% url 'delstaydetails' obj.id %}">delete</a>
+         </td>
+
+    </tr>
+    {% endfor %}
+</table>
+{% endblock content %}
+</body>
+</html>

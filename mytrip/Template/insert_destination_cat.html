@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+{% extends 'adminheader.html' %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Destination Category</title>
+</head>
+<body>
+{% block content %}
+<form id="f1" method="post">
+        <table class="table table-striped">
+            <h3><b>DESTINATION CATEGORY</b></h3>
+
+            {% csrf_token %}
+      {{ form1.as_table }}
+          <tr>
+              <td></td>
+            <td>
+                 <input type="submit" value="submit">
+
+{% if messages %}
+    <ul class="messages">
+
+        {% for message in messages %}
+        <li {% if message.tags %} class ="{{ message.tags }}" {% endif %}>{{ message }}</li>
+        {% endfor %}
+    </ul>
+{% endif %}
+            </td>
+        </tr>
+
+
+   </table>
+
+</form>
+
+<table class="table table-striped">
+    <tr>
+        <th>Destination Category</th>
+        <th colspan="2" style="text-align:center" >Actions</th>
+    </tr>
+    {% for destcat in destination_cat %}
+     <tr>
+
+        <td><b>{{ destcat.Destination_cat }}</b></td>
+         <td>
+             <a href="{% url 'updateDestination_cat' destcat.id %}">Edit</a>
+
+         </td>
+         <td>
+          <a href="{% url 'delDestination_cat' destcat.id %}">Delete</a>
+         </td>
+
+
+    </tr>
+    {% endfor %}
+</table>
+{% endblock content %}
+</body>
+</html>

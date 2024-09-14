@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+{% extends 'companyheader.html' %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Stay Details</title>
+</head>
+<body>
+{% block content %}
+<center><h2> VEHICLE DETAILS</h2></center>
+<form id="f1" method="post" enctype="multipart/form-data">
+     <table class="table table-striped">
+      {% csrf_token %}
+      {{ form1.as_table }}
+
+   </table>
+    <input type="submit" value="submit">
+{% if messages %}
+    <ul class="messages">
+
+        {% for message in messages %}
+        <li {% if message.tags %} class ="{{ message.tags }}" {% endif %}>{{ message }}</li>
+        {% endfor %}
+    </ul>
+{% endif %}
+
+</form>
+
+<table class="table table-striped">
+    <tr>
+        <th>Veh_regno</th>
+        <th>Reg_date </th>
+        <th>vehicle_type</th>
+        <th>Tank_capacity</th>
+        <th>Standard_mileage</th>
+        <th>Engine_no</th>
+        <th>Chasis_no</th>
+        <th>No_of_tyres</th>
+        <th>Fuel_Type</th>
+        <th>Seating_capacity</th>
+        <th colspan="2" style="text-align:center" >Actions</th>
+    </tr>
+    {% for obj in vehicledetails %}
+     <tr>
+
+        <td>{{ obj.Veh_regno }}</td>
+         <td>{{ obj.Reg_date }}</td>
+         <td>{{ obj.vehicle_type }}</td>
+         <td>{{ obj.Tank_capacity }}</td>
+        <td>{{ obj.Standard_mileage }}</td>
+        <td>{{ obj.Engine_no }}</td>
+        <td>{{ obj.Chasis_no }}</td>
+        <td>{{ obj.No_of_tyres }}</td>
+        <td>{{ obj.Fuel_Type }}</td>
+        <td>{{ obj.Seating_capacity }}</td>
+
+
+         <td>
+             <a href="{% url 'updatevehicledetails' obj.id %}">edit</a>
+             <a href="{% url 'delvehicledetails' obj.id %}">delete</a>
+         </td>
+
+    </tr>
+    {% endfor %}
+</table>
+{% endblock content %}
+</body>
+</html>

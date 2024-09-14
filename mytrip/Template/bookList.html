@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+{% extends 'companyheader.html' %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Reservation</title>
+</head>
+
+<body>
+
+  {% block content %}
+  <center><h2>RESERVATION  INFO</h2></center>
+   <table class="table table-striped">
+     
+      <tr>
+        <th> Package_Name</th>
+       
+      
+        <th>Itinerary_Name</th>
+        <th>Duration</th>
+        <th>Price/person</th>
+        
+        
+          
+        <th>Adults</th>
+                      
+                                
+            
+                   
+        <th>Children</th>
+                                 
+
+                  <th>No_of_Persons</th>
+                     
+                              
+          
+                 
+         
+              
+                     
+
+                        <th>Reserv_Date</th>
+                         
+                                    
+                
+                        </tr>
+                        {% for obj in book_list %}
+
+                   <tr>
+      
+           <td>{{ obj.Package.Package_Name }}</td>
+      
+
+        <td>{{ obj.Name }}</td>
+     
+        <td>{{ obj.Package.Duration }}</td>
+        <td>{{ obj.Package.Price }}</td>
+        
+          
+        <td> {{ obj.Adults }}</td>
+                                
+            
+                    
+        <td> {{ obj.Children }}</td>
+         
+
+                
+                      <td> {{ obj.No_of_Persons }}</td>
+                              
+          
+                 
+
+                   
+                      
+                                  
+              
+                     
+
+                       
+                            <td> {{ obj.Reserv_Date }}</td>
+                                    
+                
+                        </tr>                  
+                        {% endfor %}     
+
+  </table>
+
+{% endblock content %}
+</body>
+</html>
+
+
+
+
+
+

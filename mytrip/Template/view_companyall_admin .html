@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+{% extends 'adminheader.html' %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Company</title>
+</head>
+
+<body>
+ 
+  {% block content %}
+  <center><h2>COMPANY INFO</h2></center>
+  <table class="table table-striped">
+     
+    <tr>
+      <th> Company_Name</th>    
+      <th>Com_Regist_No</th>   
+      <th>Vat_No</th>
+      <th>Tin_No</th>    
+      <th>Address</th>
+      <th>Address1</th>
+      <th>Location</th>
+      <th>State</th>
+      <th>Country</th>
+      <th>ZIP</th>
+      <th>Phone1</th>
+      <th>Phone2</th>
+      <th>Fax</th>
+      <th>Email</th>
+     
+      
+      <th>Registrationdate</th>                  
+      </tr>
+       {% for obj in company %}
+      <tr>    
+       
+      <td>{{ obj.Company_Name }}</td>
+     
+        <td> {{ obj.Com_Regist_No}}</td>
+   
+        <td>{{ obj.Vat_No }}</td>
+    
+          <td> {{ obj.Tin_No }}</td>
+        
+            <td> {{ obj.Address }}</td>
+              
+               <td> {{ obj.Address1 }}</td>
+                
+                <td> {{ obj.Location}}</td>
+                    
+                  <td> {{ obj.State }}</td>
+                   
+                    <td> {{ obj.Country }}</td>
+                      
+                        <td> {{ obj.ZIP }}</td>                    
+            
+                          <td> {{ obj.Phone1 }}</td>
+                          <td> {{ obj.Phone2 }}</td>
+                          <td> {{ obj.Fax }}</td>
+                          <td> {{ obj.Email }}</td>
+                         
+                        
+                          <td> {{ obj.Registrationdate }}</td>
+                            
+                      </tr>                  
+                      {% endfor %}     
+
+</table>
+
+             
+
+             
+
+                     
+
+{% endblock content %}
+</body>
+</html>
+
+
+
+
+
+

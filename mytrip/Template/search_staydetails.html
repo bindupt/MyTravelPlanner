@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+{% extends 'adminheader.html' %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Search Stay Details</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f0f0f5;
+            color: #333;
+            line-height: 1.6;
+        }
+        h1 {
+            color: #007BFF;
+            text-align: center;
+            font-size: 2.5em;
+            margin-bottom: 40px;
+        }
+        .stay-container {
+            background-color: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            margin-bottom: 30px;
+            padding: 20px;
+            display: flex;
+            align-items: flex-start;
+            transition: transform 0.3s ease;
+        }
+        .stay-container:hover {
+            transform: scale(1.02);
+        }
+        .image-slider {
+            position: relative;
+            width: 250px;
+            height: 250px;
+            border-radius: 12px;
+            overflow: hidden;
+            flex-shrink: 0;
+            margin-right: 30px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            border: 5px solid #007BFF;
+        }
+        .image-slider img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 12px;
+            transition: opacity 0.5s ease;
+        }
+        .stay-details {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        .stay-details-section {
+            margin-bottom: 20px;
+        }
+        .stay-details-section h2 {
+            color: #007BFF;
+            font-size: 1.5em;
+            margin-bottom: 10px;
+            border-bottom: 2px solid #007BFF;
+            padding-bottom: 5px;
+        }
+        .stay-details-section p {
+            margin: 8px 0;
+            font-size: 1.2em;
+            color: #444;
+        }
+        .stay-details-section strong {
+            font-weight: bold;
+            color: #007BFF;
+        }
+        a {
+            color: #007BFF;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        .slider-controls {
+            position: absolute;
+            top: 50%;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            transform: translateY(-50%);
+        }
+        .slider-controls span {
+            background-color: rgba(0, 0, 0, 0.5);
+            color: #ffffff;
+            padding: 10px;
+            border-radius: 50%;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    {% block content %}
+    <center>
+    <h1>Stay Details</h1>
+   
+
+    {% for obj in staydetails %}
+
+    <div class="stay-container">
+        <div class="image-slider">
+            {% if obj.images %}
+                <img src="{{ obj.images.url }}" alt="{{ obj.Name }}" class="slide" height="300" width="600">
+            {% endif %}
+            <div class="slider-controls">
+                <span class="prev">&#10094;</span>
+                <span class="next">&#10095;</span>
+            </div>
+        </div>
+        <div class="stay-details">
+            <div class="stay-details-section">
+                <h2>Basic Information</h2>
+                <p><strong>Name:</strong> {{ obj.Name }}</p>
+                <p><strong>Category:</strong> {{ obj.Stay_category }}</p>
+                <p><strong>Location:</strong> {{ obj.Location }}, {{ obj.District }}, {{ obj.state }}</p>
+                <p><strong>Address:</strong> {{ obj.Address }}</p>
+            </div>
+            <div class="stay-details-section">
+                <h2>Contact Details</h2>
+                <p><strong>Phone:</strong> {{ obj.Lphone }}</p>
+                <p><strong>Mobile:</strong> {{ obj.mobno }}</p>
+                <p><strong>Fax:</strong> {{ obj.fax }}</p>
+                <p><strong>Email:</strong> <a href="mailto:{{ obj.email }}">{{ obj.email }}</a></p>
+                <p><strong>Website:</strong> <a href="{{ obj.link }}" target="_blank">Visit Website</a></p>
+            </div>
+            <div class="stay-details-section">
+                <h2>Additional Information</h2>
+                <p><strong>Tariff Range:</strong> {{ obj.Tarrif_range }}</p>
+            </div>
+        </div>
+    </div>
+
+    {% endfor %}
+</center>
+    
+
+    <script>
+        // JavaScript for image slider functionality
+        document.addEventListener("DOMContentLoaded", function() {
+            const sliders = document.querySelectorAll('.image-slider');
+
+            sliders.forEach(slider => {
+                let currentIndex = 0;
+                const images = slider.querySelectorAll('img');
+                const totalImages = images.length;
+
+                const showImage = (index) => {
+                    images.forEach((img, i) => {
+                        img.style.opacity = i === index ? '1' : '0';
+                    });
+                };
+
+                slider.querySelector('.next').addEventListener('click', () => {
+                    currentIndex = (currentIndex + 1) % totalImages;
+                    showImage(currentIndex);
+                });
+
+                slider.querySelector('.prev').addEventListener('click', () => {
+                    currentIndex = (currentIndex - 1 + totalImages) % totalImages;
+                    showImage(currentIndex);
+                });
+
+                // Initialize slider
+                showImage(currentIndex);
+            });
+        });
+    </script>
+     {% endblock content %}
+</body>
+</html>
+

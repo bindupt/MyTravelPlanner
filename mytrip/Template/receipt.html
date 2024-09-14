@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="{% static 'css/receit.css' %}" rel="stylesheet">
+</head>
+ <script>
+        window.onload = function() {
+            var currentDate = new Date();
+            var day = currentDate.getDate();
+            var month = currentDate.getMonth() + 1; // January is 0!
+            var year = currentDate.getFullYear();
+
+            // Format the current date
+            var formattedCurrentDate = day + "/" + month + "/" + year;
+
+            // Find the HTML element with id "invoiceDate" and update its content with the current date
+            document.getElementById("invoiceDate").innerHTML = formattedCurrentDate;
+        }
+    </script>
+<body>
+{% block content %}
+<form>
+<table class="body-wrap">
+    <tbody><tr>
+        <td></td>
+        <td class="container" width="600">
+            <div class="content">
+                <table class="main" width="100%" cellpadding="0" cellspacing="0">
+                    <tbody><tr>
+                        <td class="content-wrap aligncenter">
+                            <table width="100%" cellpadding="0" cellspacing="0">
+                                <tbody><tr>
+                                    <td class="content-block">
+                                        <h2>Thanks for using our app</h2>
+                                    </td>
+                                </tr>
+                                <tr>
+
+                                    <td class="content-block">
+                                        <table class="invoice">
+                                            <tbody>
+                                            {% for obj in payments %}
+                                            <tr>
+<!--                                                <td>Anna Smith<br>Invoice #12345<br>June 01 2015</td>-->
+                                                <td>{{obj.name}}Anna Smith<br>Booking No.TR-{{obj.Reservation.id}}<br><span id="invoiceDate"></span></td>
+                                            </tr>
+
+                                            <tr>
+                                                <td>
+                                                    <table class="invoice-items" cellpadding="0" cellspacing="0">
+                                                        <tbody>
+
+                                                        <tr>
+                                                            <td>Transaction ID:</td>
+                                                            <td class="alignright">{{ obj.id }}</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Amount</td>
+
+
+                                                            <td class="alignright">{{ obj.Amount }}</td>
+                                                        </tr>
+                                                         <tr>
+                                                         <td class="content-block">Date:           {{ obj.Trans_Date }}</td>
+                                                            </tr>
+
+                                                        <tr class="total">
+                                                            <td class="alignright" width="80%">Status</td>
+                                                            <td class="alignright">{{ obj.status }}</td>
+                                                        </tr>
+
+                                                        {% endfor %}
+                                                    </tbody></table>
+                                                </td>
+                                            </tr>
+                                        </tbody></table>
+                                    </td>
+                                </tr>
+                                <tr>
+    <td><a class="btn" style="color: Red;" href="{% url 'viewtourpackage'  %}"><b>Home</b></a></td>
+</tr>
+<tr>
+    <td class="content-block" style="color: Black;"><a href="#"><h4>Visit Again !!!!</h4></a></td>
+</tr>
+<tr>
+    <td><br></td> <!-- Line space added here -->
+</tr>
+                                <tr>
+                                    <td class="content-block",style="color: red;">
+                                        TRAVI Inc. 123 Business Street,Kottayam 685001
+                                    </td>
+                                </tr>
+                            </tbody></table>
+                        </td>
+                    </tr>
+                </tbody></table>
+                <div class="footer">
+                    <table width="100%">
+                        <tbody><tr>
+
+
+                            <td class="aligncenter content-block">Questions? Email <a href="mailto:">support@company.inc</a></td>
+                        </tr>
+                    </tbody></table>
+                </div></div>
+        </td>
+        <td></td>
+    </tr>
+</tbody></table>
+
+
+
+</form>
+{% endblock content %}
+</body>
+</html>

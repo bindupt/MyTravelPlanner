@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+{% extends 'adminheader.html' %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title><!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>State</title>
+</head>
+<body>
+{% block content %}
+<form id="f3" method="post" enctype="multipart/form-data">
+    <tr>
+             <td>
+             <H3>UPDATE STATE</H3>
+             </td>
+         </tr>
+     <table class="table table-striped">
+      {% csrf_token %}
+      {{ f3.as_table }}
+         <tr>
+            <td></td>
+      <td> <input type="submit" value="update"></td>
+        </tr>
+
+   </table>
+
+</form>
+{% endblock content %}
+</body>
+</html>
+

@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en-US" class="no-js">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <!-- TITLE -->
+    <title>Tours - Travi Tour Guide And Excursions HTML Template</title>
+
+    <!--  FAVICON  -->
+    <link rel="shortcut icon" href="{% static 'images/icons/favicon.png' %}">
+
+    <!-- FONT AWESOME ICONS LIBRARY -->
+    <link rel="stylesheet" href="fonts/css/all.min.css">
+
+    <!-- CSS LIBRARY STYLES -->
+    <link rel="stylesheet" href="{% static 'cssi/lib/bootstrap.min.css' %}">
+    <link rel='stylesheet' href="{% static 'cssi/lib/flickity.min.css' %}">
+    <link rel='stylesheet' href="{% static 'cssi/lib/magnific-popup.min.css' %}">
+    <link rel="stylesheet" href="{% static 'cssi/lib/owl.carousel.min.css' %}">
+    <link rel="stylesheet" href="{% static 'cssi/lib/slick.min.css' %}">
+    <link rel="stylesheet" href="{% static 'cssi/lib/aos.min.css' %}">
+    <link rel="stylesheet" href="{% static 'cssi/navbar.css' %}">
+
+    <!-- CSS TEMPLATE STYLES -->
+    <link rel="stylesheet" href="{% static 'cssi/main.css' %}">
+    <link rel="stylesheet" href="{% static 'cssi/stylesheet.css' %}">
+    <link rel="stylesheet" href="{% static 'cssi/responsive.css' %}">
+
+    <!-- MODERNIZR LIBRARY -->
+    <script src="{% static 'jsi/modernizr-custom.js' %}"></script>
+
+</head>
+
+<body>
+
+
+    <header>
+        <!-- NAV START -->
+        <nav class="navbar navbar-expand-lg navbar-dark">
+            <div class="container">
+                <a href="index.html" class="navbar-brand"><img src="{% static 'images/logos/logo.png' %}" alt=""></a>
+
+                <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#main-nav">
+                    <span class="menu-icon-bar"></span>
+                    <span class="menu-icon-bar"></span>
+                    <span class="menu-icon-bar"></span>
+                </button>
+
+                <div id="main-nav" class="collapse navbar-collapse">
+                    <ul class="navbar-nav ml-auto">
+                        <li><a href="index.html" class="nav-item nav-link">HOME</a></li>
+                        <li><a href="{% url 'insert_feedback' %}" class="nav-item nav-link">FEEDBACK</a></li>
+                        <li class="dropdown">
+                            <a href="#" class="nav-item nav-link" data-toggle="dropdown">TOURS</a>
+                            <div class="dropdown-menu">
+                                <a href="{% url 'viewtourpackage' %}" class="dropdown-item">Booking</a>
+                            </div>
+                        </li>
+                       <li><a href="{% url 'book_list' %}" class="nav-item nav-link">Book List</a></li>
+                        <li class="dropdown">
+                            <a href="#" class="nav-item nav-link" data-toggle="dropdown">Plan Your Trip</a>
+                            <div class="dropdown-menu">
+                                <a href="book_list" class="dropdown-item">Destination</a>
+                                <a href="{% url 'search_Pilgrimcenter' %}" class="dropdown-item">Pilgrim Center</a>
+                                <a href="{% url 'viewEvent_cust' %}" class="dropdown-item">Events</a>
+                                <a href="{% url 'viewstaydetails_cust' %}" class="dropdown-item">Stay Details</a>
+                                <a href="{% url 'viewvehicledetails_cust' %}" class="dropdown-item">Vehicle Details</a>
+                            </div>
+                        </li>
+                        <li><a href="{% url 'logout' %}" class="nav-item nav-link last-link-item">Logout</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <!-- NAV END -->
+
+        <div class="pages-hero">
+            <div class="container">
+                <div class="pages-title">
+                    <h1>Tours</h1>
+                    <div class="page-nav">
+                        <p><a href="#">Home</a> &nbsp; | &nbsp; <a href="#">Tours</a></p>
+                    </div>
+                </div>
+            </div>
+            <div class="social-media">
+                <ul>
+                    <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
+                    <li><a href="#"><i class="fab fa-twitter"></i></a></li>
+                    <li><a href="#"><i class="fab fa-instagram"></i></a></li>
+                    <li><a href="#"><i class="fab fa-tiktok"></i></a></li>
+                </ul>
+            </div>
+        </div>
+    </header>
+
+    <!-- CONTENT START -->
+    <section>
+        <!-- PROJECT GRID START -->
+        <div class="container-fluid mt-5 mb-5">
+            <div class="filter-container">
+               {% block content %}
+
+                {% endblock content %}
+
+            </div>
+        </div>
+        <!-- PROJECT GRID END -->
+
+        <!-- CALL TO ACTION START -->
+        <div class="container mt-5 mb-5">
+            <div class="call-action-wrapper">
+                <div class="row">
+                    <div class="col-md-12 col-lg-6">
+                        <div class="ca-left-side">
+                            <h3>Need Help With Your Tour</h3>
+                            <p>Send us a message and one of our experts will contact you.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-12 col-lg-6">
+                        <div class="ca-right-side flex-parent jc-center">
+                            <a class="btn btn-default" href="contact.html" role="button">Request a Quote</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- CALL TO ACTION END -->
+
+    </section>
+    <!-- CONTENT END -->
+
+    <!-- FOOTER START -->
+    <footer>
+        <div class="container">
+            <figure class="footer-logo">
+                <img src="images/logos/logo.png" alt="">
+            </figure>
+            <ul class="footer-menu d-flex justify-content-center">
+                <li><a href="index.html">HOME</a></li>
+                <li><a href="about-us.html">ABOUT</a></li>
+                <li><a href="tours.html">TOURS</a></li>
+                <li><a href="blog-grid.html">BLOGS</a></li>
+                <li><a href="contact.html">CONTACT</a></li>
+            </ul>
+
+            <div class="footer-social d-flex justify-content-center">
+                <a href="#">
+                    <div><i class="fab fa-facebook-f"></i></div>
+                </a>
+                <a href="#">
+                    <div><i class="fab fa-twitter"></i></div>
+                </a>
+                <a href="#">
+                    <div><i class="fab fa-instagram"></i></div>
+                </a>
+                <a href="#">
+                    <div><i class="fab fa-tiktok"></i></div>
+                </a>
+            </div>
+        </div>
+    </footer>
+    <!-- FOOTER END -->
+
+
+
+    <!-- JAVASCRIPTS -->
+    <script src="{% static 'jsi/lib/jquery-3.5.1.min.js' %}"></script>
+    <script src="{% static 'jsi/lib/bootstrap.min.js' %}"></script>
+    <script src="{% static 'jsi/lib/plugins.js' %}"></script>
+    <script src="{% static 'jsi/lib/nav.fixed.top.js' %}"></script>
+    <script src="{% static 'jsi/lib/contact.js' %}"></script>
+    <script src="{% static 'jsi/main.js' %}"></script>
+    <!-- JAVASCRIPTS END -->
+
+</body>
+
+</html>

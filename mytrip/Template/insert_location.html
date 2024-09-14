@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+{% extends 'adminheader.html' %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>LOCATION</title>
+</head>
+<body>
+{% block content %}
+<form id="f1" method="post">
+        <table class="table table-striped">
+            <h3><b>LOCATION</b></h3>
+      {% csrf_token %}
+      {{ form1.as_table }}
+          <tr>
+              <td></td>
+            <td>
+                 <input type="submit" value="submit">
+                {% if messages %}
+    <ul class="messages">
+
+        {% for message in messages %}
+        <li {% if message.tags %} class ="{{ message.tags }}" {% endif %}>{{ message }}</li>
+        {% endfor %}
+    </ul>
+{% endif %}
+            </td>
+        </tr>
+
+   </table>
+
+
+</form>
+<table border="1">
+    <tr>
+        <th>District</th>
+        <th>Location</th>
+        <th>Description</th>
+        <th>Hw_to_reach</th>
+        <th colspan="2" style="text-align:center" >Actions</th>
+    </tr>
+    {% for loc in location %}
+     <tr>
+         <td>{{ loc.district }}</td>
+            <td>{{ loc.Location }}</td>
+                <td>{{ loc.Description }}</td>
+                    <td>{{ loc.Hw_to_reach }}</td>
+                        <td>
+                            <a href="{% url 'updatelocation' loc.id %}">Edit</a>
+                            <a href="{% url 'dellocation' loc.id %}">Delete</a>
+                        </td>
+
+     </tr>
+    {% endfor %}
+</table>
+{% endblock content %}
+</body>
+</html>

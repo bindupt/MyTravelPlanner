@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title><!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Destination Category</title>
+</head>
+<body>
+{% block content %}
+<form id="f3" method="post" enctype="multipart/form-data">
+     <table class="table table-striped">
+      {% csrf_token %}
+      {{ f3.as_table }}
+   </table>
+      <input type="submit" value="update">
+</form>
+{% endblock content %}
+</body>
+</html>

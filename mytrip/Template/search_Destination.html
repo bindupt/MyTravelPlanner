@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+{% extends 'customerheader1.html' %}
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+
+</head>
+<body>
+{% block content %}
+
+     <div class="grid grid-four-col image-hover" id="kehl-grid">
+         <div class="grid-sizer"></div>
+           {% for obj in destination %}
+                <div class="grid-box atv">
+                    <figure class="activty-img zoom-in">
+                        <div class="price-layer rounded-pill">
+                            <div class="price-box">
+                                <h4><span style="font-size: larger;">₹</span> {{ obj.Category }}</h4>
+                            </div>
+                        </div>
+                       {% if obj.image %}
+                    <img src="{{ obj.image.url }}" alt="" height ="350" width="400">
+                    {% endif %}
+                        <div class="activitie-info">
+                            <h4>{{ obj.Destination }}</h4>
+                            <h6>{{ obj.District }}</h6>
+                            <h6>{{ obj.Location }}</h6>
+                            <h6>{{ obj.state }}</h6>
+                            
+                           
+                                
+
+                        </div>
+                      
+                    </figure>
+                </div>
+          {% endfor %}
+        </div>
+     </div>>
+
+
+
+{% endblock content %}
+</body>
+</html>

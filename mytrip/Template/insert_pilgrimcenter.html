@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+{% extends 'companyheader.html' %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Pilgrim center</title>
+</head>
+<body>
+{% block content %}
+<center><h2>PILGRIMCENTER</h2></center>
+<form id="f1" method="post" enctype="multipart/form-data">
+     <table class="table table-striped">
+      {% csrf_token %}
+      {{ form1.as_table }}
+
+   </table>
+    <input type="submit" value="submit">
+{% if messages %}
+    <ul class="messages">
+
+        {% for message in messages %}
+        <li {% if message.tags %} class ="{{ message.tags }}" {% endif %}>{{ message }}</li>
+        {% endfor %}
+    </ul>
+{% endif %}
+
+</form>
+
+<table border="1">
+    <tr>
+        <th>Location</th>
+        <th>District</th>
+        <th>state</th>
+        <th>country</th>
+        <th>Pilg_Name</th>
+        <th>Pilg_Address</th>
+        <th>Pilg_Description</th>
+        <th>Pilg_image</th>
+        <th>Pilg_link</th>
+        <th colspan="2" style="text-align:center" >Actions</th>
+    </tr>
+    {% for obj in pilgrimcenter %}
+     <tr>
+
+        <td>{{ obj.Location }}</td>
+         <td>{{ obj.District }}</td>
+         <td>{{ obj.state }}</td>
+         <td>{{ obj.country }}</td>
+         <td>{{ obj.Pilg_Name }}</td>
+         <td>{{ obj.Pilg_Address }}</td>
+         <td>{{ obj.Pilg_Description }}</td>       
+
+         <td><img src="{{ obj.Pilg_image.url }}" width="100" height="100"></td>
+         <td>{{ obj.Pilg_link }}</td>
+         <td>
+             <a href="{% url 'updatepilgrimcenter' obj.id %}">edit</a>
+             <a href="{% url 'delpilgrimcenter' obj.id %}">delete</a>
+         </td>
+
+    </tr>
+    {% endfor %}
+</table>
+{% endblock content %}
+</body>
+</html>
+

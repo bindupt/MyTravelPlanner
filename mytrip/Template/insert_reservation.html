@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title><b>Reservation</b>></title>
+ <script>
+
+document.addEventListener("DOMContentLoaded", function() {
+    document.getElementById("id_Adults").addEventListener("input", addValues);
+    document.getElementById("id_Children").addEventListener("input", addValues);
+});
+
+    function addValues() {
+
+        // Get the values from the text boxes
+        var value1 = parseInt(document.getElementById("id_Adults").value);
+        var value2 = parseInt(document.getElementById("id_Children").value);
+        var value3 = parseInt(document.getElementById("packamount").value);
+        // Check if both inputs are valid numbers
+        if (!isNaN(value1) && !isNaN(value2)) {
+            // Add the values
+            var sum = value1 + value2;
+            var total= sum * value3;
+
+
+            // Display the result
+            document.getElementById("id_No_of_Persons").value = sum;
+             document.getElementById("id_TotalAmount").value = total;
+        } else {
+            // Display an error if inputs are not valid numbers
+            document.getElementById("result").value = "Invalid input";
+              document.getElementById("TotalAmount").value = "Invalid input";
+        }
+    }
+    </script>
+     {% extends 'customerheader1.html' %}
+</head>
+<body>
+{% block content %}
+<form id="f1" method="post" style="text-align: left;">
+    <table  class="table">
+      {% csrf_token %}
+        <tr>
+            <td COLSPAN="2"> <CENTER><H5>RESERVATION DETAILS<H5> </td>
+        </tr>
+      {{ form.as_table }}
+
+<!--        <input type="number" name="Adults" required="" id="id_Adults" onkeyup="addValues()">-->
+<!--        <input type="number" name="Children" required="" id="id_Children" onkeyup="addValues()">-->
+        <input type="hidden" name="Price" maxlength="50" required="" id="packamount" value="{{ packamount }}">
+<tr>
+    <td COLSPAN="2">
+         <input type="submit" value="submit">
+    </td>
+</tr>
+   </table>
+
+{% if messages %}
+    <ul class="messages">
+
+        {% for message in messages %}
+        <li {% if message.tags %} class ="{{ message.tags }}" {% endif %}>{{ message }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+</form>
+
+
+
+{% endblock content %}
+
+
+
+
+
+</body>
+</html>
+
+

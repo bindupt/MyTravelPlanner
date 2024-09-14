@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+{% extends 'adminheader.html' %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title> Feedback</title>
+</head>
+<body>
+    
+{% block content %}
+<center><h2>FEEDBACK</h2></center>
+<table class="table table-striped">
+       
+    <tr>
+          
+    
+      <th>Email</th>
+     
+   
+    
+        <th>Message</th>
+       
+   
+       <th>Date</th>
+      
+    </tr>    
+        
+    {% for obj in feedback %}
+    <tr>
+     
+        <td>{{ obj.Email }}</td>
+     
+    
+      <td>{{ obj.Message }}</td>
+   
+     
+      <td> {{ obj.Date}}</td>
+ 
+      <td>
+        <a href="{% url 'delfeedback'  obj.id %}">Delete</a>
+  </td>
+     
+ </tr>  
+ {% endfor %} 
+</table>
+
+
+{% endblock content %}
+</body>
+</html>
+

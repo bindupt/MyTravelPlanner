@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Payment</title>
+
+     <link href="{% static 'css/pay.css' %}" rel="stylesheet">
+         <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js">
+    <link href= "https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js">
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+</head>
+<body>
+<form id="f1" method="post" >
+{% csrf_token %}
+<div class="card">
+            <div class="card-top border-bottom text-center">
+                 <a href="#"> Back to shop</a>
+                <span id="logo">Payment Details</span>
+            </div>
+            <div class="card-body">
+                <div class="row upper">
+                    <span><i class="fa fa-check-circle-o"></i> Tour </span>
+                    <span><i class="fa fa-check-circle-o"></i> Planner details</span>
+                    <span id="payment"><span id="three">3</span>Payment</span>
+                </div>
+                <div class="row">
+                    <div class="col-md-7">
+                        <div class="left border">
+                            <div class="row">
+                                <span class="header">Payment</span>
+                                <div class="icons">
+                                    <img src="https://img.icons8.com/color/48/000000/visa.png"/>
+                                    <img src="https://img.icons8.com/color/48/000000/mastercard-logo.png"/>
+                                    <img src="https://img.icons8.com/color/48/000000/maestro.png"/>
+                                </div>
+                            </div>
+                            <form>
+                                <span>Cardholder's name:</span>
+                                <input type="text" name="Card_Holder_Name" placeholder="Cart Holder Name">
+                                <span>Card Number:</span>
+                                <input type="text"name="card_no" placeholder="card_no.">
+                                <div class="row">
+                                    <div class="col-4"><span>Expiry date:</span>
+                                        <input type="text"name="exp_date"  placeholder="YY/MM">
+                                    </div>
+                                    <div class="col-4"><span>CVV:</span>
+                                        <input type="text"name="cvv_no"  id="cvv">
+                                    </div>
+                                </div>
+                                <input type="checkbox" id="save_card" class="align-left">
+                                <label for="save_card">Save card details to wallet</label>
+                            </form>
+                        </div>
+                    </div>
+                    {% for res in reservation %}
+                    <div class="col-md-5">
+                        <div class="right border">
+                            <div class="header" style="color: blue;">Reservation Details</div>
+                                  <div class="row item">
+                                   <div class="col-8">
+                                     </div>
+                            </div>
+                            <div class="row item">
+
+                                <div class="col-8">
+                                    <div class="row"><h6>Package: {{res.Package}}</h6>
+
+                                    <div class="row" style="margin-bottom: 10px;">Number of Adults     : {{res.Adults}}</div>
+                                    <div class="row " style="margin-bottom: 10px;">Number of Children: {{res.Children}}</div>
+                                    <div class="row">Number of Person    : {{res.No_of_Persons}}</div>
+                                </div>
+                            </div>
+                            <hr>
+
+
+                            <div class="row lower">
+
+                                <div class="col text-left"><b>Total to pay</b></div>
+                                <div class="col text-right"><b>$ {{ amount }}</b></div>
+                            </div>
+
+                             <input type="submit" value="submit">
+
+                                <a  class="btn" style="color: red;" href="{% url 'viewtourpackage'  %}">Cancel</a>
+
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+
+         <div>
+        </div>
+        </div>
+
+
+ <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+
+</form>
+
+</body>
+</html>
+

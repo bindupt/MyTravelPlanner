@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+{% extends 'companyheader.html' %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+{% block content %}
+<center><h2>VEHICLE TYPE</h2></center>
+<form id="f1" method="post">
+     <table class="table table-striped">
+      {% csrf_token %}
+      {{ form1.as_table }}
+
+   </table>
+    <input type="submit" value="submit">
+{% if messages %}
+    <ul class="messages">
+
+        {% for message in messages %}
+        <li {% if message.tags %} class ="{{ message.tags }}" {% endif %}>{{ message }}</li>
+        {% endfor %}
+    </ul>
+{% endif %}
+
+</form>
+
+<table class="table table-striped">
+    <tr>
+        <th>vehicle_type</th>
+        <th colspan="2"  >Actions</th>
+    </tr>
+    {% for vehicle in veh %}
+     <tr>
+         <td>{{ vehicle.vehicle_type }}</td>
+
+         <td>
+             <a href="{% url 'updatevehicletype' vehicle.id %}">Edit</a>
+
+         </td>
+         <td>
+             <a href="{% url 'delvehicletype' vehicle.id %}">Delete</a>
+
+         </td>
+
+     </tr>
+    {% endfor %}
+</table>
+{% endblock content %}
+</body>
+</html>
+
+

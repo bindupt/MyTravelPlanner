@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Reservation</title>
+</head>
+
+<body>
+  <center><h2>RESERVATION DETAILS</h2></center>
+
+  {% for obj in reservation %}
+   <table class="table table-striped">
+
+      <tr>
+        <th> Package_Name</th>
+           <td>{{ obj.Package_Name }}</td>
+       </tr>
+      <tr>
+        <th>Duration</th>
+        <td>{{ obj.Duration }}</td>
+      </tr>
+      <tr>
+          <th>No_of_Persons</th>
+          <td> {{ obj.No_of_Packages}}</td>
+      </tr>
+        <tr>
+         <th>Price per person:</th>
+          <td> {{ obj.Price }}</td>
+      </tr>
+       <tr>
+         <th>Package_Contents</th>
+          <td>{{ obj.Package_Contents }}</td>
+      </tr>
+        <tr>
+
+        <th>Insurance_Company</th>
+            <td> {{ obj.Insurance_Company }}</td>
+        </tr>
+
+
+ <tr>
+  <td> <ul>
+      <b>Destination Details</b>
+      {% for dest in obj.Destination.all %}
+
+        <li> {{  dest.Destination  }}</li>
+         {{  dest.Category  }}
+        {{  dest.Location  }}
+         {{  dest.District  }}
+        {{  dest.state  }}
+        {{  dest.image }}
+      {% endfor %}
+         </ul>
+  </td>
+
+ </tr>
+      <tr>
+<td> <ul>
+    <b>Pilgrim Details</b>
+    {% for dest in obj.pilgrimcenter.all %}
+    <li> {{  dest.Pilg_Name  }}</li>
+     {{ dest.Pilg_Address  }}
+    {{  dest.Pilg_Description  }}
+    {{  dest.Pilg_image }}
+    {{  dest.Pilg_link  }}
+
+    {% endfor %}
+         </ul>
+         </td>
+      </tr>
+  <tr>
+
+<td> <ul>
+    {% for obj in staydetails %}
+             <li> {{ obj.Stay_category }} </li>
+    <li>{{ obj.Name }} </li>
+   {{ obj.Location }}
+    {{ obj.District }}
+   {{ obj.state }}
+    {{ obj.Tarrif_range }}
+   {{ obj.mobno }}
+    {{ obj.email }}
+</ul>
+</td>
+     <td><img src="{{ obj.images.url }}" width="100" height="100"></td>
+
+        <td>{{ obj.link }}</td>
+             {% endfor %}
+
+
+</tr>
+      <tr>
+          <td>
+             <a href="{% url 'reservation' obj.id %}">Book Now!!..</a>
+
+          </td>
+      </tr>
+
+  </table>
+{% endfor %}
+</body>
+</html>
+
+
+
+
+
+

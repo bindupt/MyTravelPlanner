@@ -1,0 +1,89 @@
+<!-- search_staydetails.html -->
+<!DOCTYPE html>
+{% extends 'customerheader1.html' %}
+<html>
+<head>
+    <title> Stay details</title>
+</head>
+<body>
+ 
+    {% block content %}
+
+<table>
+  <tr>
+    <td>
+
+    </td>
+  </tr>
+</table>
+
+
+    <h5> Stay Details</h5>
+    {% for obj in staydetails %}
+    <center>
+      <table class="class table-striped">
+  <tbody>
+   
+    <tr rowspan="10">  {% if obj.images %}
+            
+       
+      <td rowspan="3"><td><img src="{{ obj.images.url }}" width="400" height="400"></td>
+      
+      {% endif %}
+    </tr>
+    
+    <tr>
+      <td>{{obj.Name}}</td>
+      <td>{{obj.Stay_category}}</td>
+    </tr>
+    <tr>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <td colspan="2">{{obj.Address}}</td>
+    </tr>
+    <tr>
+        <td colspan="2">{{obj.Location}}</td>
+      </tr>
+      <tr>
+        <td colspan="2">{{obj.District}}</td>
+      </tr>
+      <tr>
+        <td colspan="2">{{obj.state}}</td>
+      </tr>
+      <tr>
+        <td colspan="2">{{obj.Tarrif_range}}</td>
+      </tr>
+      <tr>
+        <td colspan="2">{{obj.Lphone}}</td>
+      </tr>
+      <tr>
+        <td colspan="2">{{obj.mobno}}</td>
+      </tr>
+      <tr>
+        <td colspan="2">{{obj.fax}}</td>
+      </tr>
+      <tr>
+        <td colspan="2">{{obj.email}}</td>
+      </tr>
+      <tr>
+        <td colspan="2">{{obj.link}}</td>
+      </tr>
+  </tbody>
+</table>
+</center>
+{% endfor %}
+
+{% endblock content %}
+
+</body>
+</html>

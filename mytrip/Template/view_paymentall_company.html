@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+{% extends 'companyheader.html' %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Reservation</title>
+</head>
+
+<body>
+
+  {% block content %}
+ 
+   <table class="table table-striped">
+          
+      <tr>
+        <th> Reservation</th>
+      
+      
+        <th>Trans_Date</th>
+       
+     
+      
+          <th>Amount</th>
+         
+     
+         <th>status:</th>
+        
+      </tr>    
+          
+      {% for obj in payment %}
+      <tr>
+       
+          <td>{{ obj.Reservation.id }}</td>
+       
+      
+        <td>{{ obj.Trans_Date }}</td>
+     
+       
+        <td> {{ obj.Amount}}</td>
+   
+      
+       <td>{{ obj.status }}</td>
+   </tr>  
+   {% endfor %} 
+  </table>
+
+  
+{% endblock content %}
+</body>
+</html>
+
+
+
+
+
+

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+{% extends 'customerheader1.html' %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title> Feedback</title>
+</head>
+<body>
+{% block content %}
+<form id="f1" method="post">
+    <table class="table table-striped">
+      <H3><b>FEEDBACK</b></H3>
+      {% csrf_token %}
+      {{ form1.as_table }}
+        <tr>
+            <td></td>
+            <td>
+                 <input type="submit" value="submit">
+
+{% if messages %}
+    <ul class="messages">
+
+        {% for message in messages %}
+        <li {% if message.tags %} class ="{{ message.tags }}" {% endif %}>{{ message }}</li>
+        {% endfor %}
+    </ul>
+{% endif %}
+            </td>
+        </tr>
+
+   </table>
+
+
+</form>
+
+{% endblock content %}
+</body>
+</html>
+

@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+{% extends 'adminheader.html' %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Reservation</title>
+</head>
+
+<body>
+
+  {% block content %}
+  <center><h2>RESERVATION DETAILS</h2></center>
+ 
+  <table class="table table-striped">
+     
+    <tr>
+      <th> Package_Name</th>
+     
+    
+      <th>Itinerary_Name</th>
+
+   
+        <th>Street_Address</th>
+    
+   
+       <th>Mobile No:</th>
+
+    
+      <th>email</th>
+      
+        
+
+
+        <th>Country</th>
+         
+                    
+
+      
+          <th>State</th>
+          
+                      
+  
+         
+            <th>City</th>
+           
+                        
+    
+           
+
+              <th>ZIP</th>
+               
+                          
+      
+
+                <th>No_of_Persons</th>
+                   
+                            
+        
+               
+
+                  <th>Adults</th>
+                    
+                              
+          
+                 
+                    <th>Children</th>
+                                                      
+            
+                   
+
+                      <th>Reserv_Date</th>
+                       
+                                  
+              
+                      </tr>
+                      {% for obj in reservation %}
+
+                 <tr>
+    
+         <td>{{ obj.Package.Package_Name }}</td>
+    
+
+      <td>{{ obj.Name }}</td>
+   
+   
+        <td> {{ obj.Street_Address}}</td>
+   
+        <td>{{ obj.Mobile }}</td>
+    
+
+          <td> {{ obj.email }}</td>
+        
+
+
+       
+            <td> {{ obj.Country }}</td>
+                    
+
+      
+         
+              <td> {{ obj.State }}</td>
+                      
+  
+         
+           
+                <td> {{ obj.City }}</td>
+                        
+    
+           
+
+           
+                  <td> {{ obj.ZIP }}</td>
+                          
+      
+
+              
+                    <td> {{ obj.No_of_Persons }}</td>
+                            
+        
+               
+
+                 
+                      <td> {{ obj.Adults }}</td>
+                              
+          
+                  
+                        <td> {{ obj.Children }}</td>
+                                
+            
+                   
+
+                     
+                          <td> {{ obj.Reserv_Date }}</td>
+                                  
+              
+                      </tr>                  
+                      {% endfor %}     
+
+</table>
+
+             
+
+             
+
+                     
+
+{% endblock content %}
+</body>
+</html>
+
+
+
+
+
+
